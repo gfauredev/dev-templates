@@ -5,32 +5,29 @@
 
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
-        pkgs = import nixpkgs { inherit system; };
-      });
-    in
-    {
+      supportedSystems =
+        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSupportedSystem = f:
+        nixpkgs.lib.genAttrs supportedSystems
+        (system: f { pkgs = import nixpkgs { inherit system; }; });
+    in {
       devShells = forEachSupportedSystem ({ pkgs }: {
-        default = pkgs.mkShell.override
-          {
-            # Override stdenv in order to change compiler:
-            # stdenv = pkgs.clangStdenv;
-          }
-          {
-            packages = with pkgs; [
-              clang-tools
-              cmake
-              codespell
-              conan
-              cppcheck
-              doxygen
-              gtest
-              lcov
-              vcpkg
-              vcpkg-tool
-            ] ++ (if system == "aarch64-darwin" then [ ] else [ gdb ]);
-          };
+        default = pkgs.mkShell.override {
+          stdenv = pkgs.clangStdenv; # Clang instead of GCC
+        } {
+          packages = with pkgs; [
+            clang-tools # clang CLIs
+            cmake # Automation tool
+            cmake-language-server # LSP
+            cppcheck # Static analysis
+            doxygen # Documentation generator
+            gnumake # Automation tool
+            gtest # Testing framework
+            lcov # Code coverage
+            lldb # Debug adapter
+            valgrind # Debugging and profiling
+          ];
+        };
       });
     };
 }

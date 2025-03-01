@@ -1,33 +1,22 @@
-# Nix flake templates for easy dev environments
+---
+lang: en
+---
+
+# Nix flake templates for quick dev environments
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-To initialize (where `${ENV}` is listed in the table below):
+Initialize an environment with the below command (or better as a script),
+passing the wanted stack as the `$1` argument.
 
 ```shell
-nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#${ENV}"
+nix flake init -t "github:gfauredev/dev-templates#$1"
+direnv allow
 ```
 
-Here's an example (for the [`rust`](./rust) template):
+## Stacks
 
-```shell
-# Initialize in the current project
-nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust"
-
-# Create a new project
-nix flake new --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust" ${NEW_PROJECT_DIRECTORY}
-```
-
-## How to use the templates
-
-Once your preferred template has been initialized, you can use the provided shell in two ways:
-
-1. If you have [`nix-direnv`][nix-direnv] installed, you can initialize the environment by running `direnv allow`.
-2. If you don't have `nix-direnv` installed, you can run `nix develop` to open up the Nix-defined shell.
-
-## Available templates
-
-| Language/framework/tool          | Template                              |
+| Stack (language, tools…)         | Nix Flake Template                    |
 | :------------------------------- | :------------------------------------ |
 | [Bun]                            | [`bun`](./bun/)                       |
 | [C]/[C++]                        | [`c-cpp`](./c-cpp/)                   |
@@ -52,6 +41,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | [Node.js][node]                  | [`node`](./node/)                     |
 | [OCaml]                          | [`ocaml`](./ocaml/)                   |
 | [Odin]                           | [`odin`](./odin/)                     |
+| [OpenSCAD][openscad]             | [`opa`](./openscad)                   |
 | [Open Policy Agent][opa]         | [`opa`](./opa)                        |
 | [PHP]                            | [`php`](./php/)                       |
 | [PlatformIO]                     | [`platformio`](./platformio/)         |
@@ -72,7 +62,8 @@ Once your preferred template has been initialized, you can use the provided shel
 
 ## Template contents
 
-The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
+The sections below list what each template includes. In all cases, you're free
+to add and remove packages as you see fit; the templates are just boilerplate.
 
 ### [`bun`](./bun/)
 
@@ -80,17 +71,28 @@ The sections below list what each template includes. In all cases, you're free t
 
 ### [`c-cpp`](./c-cpp/)
 
-- [clang-tools] 17.0.6
-- [cmake] 3.28.3
-- [codespell] 2.2.6
-- [conan] 2.0.17
-- [cppcheck] 2.13.4
-- [doxygen] 1.10.0
-- [gdb] 14.1
-- [gtest] 1.12.1
-- [lcov] 1.0
-- [vcpkg]
-- [vcpkg-tool]
+Default compiler gcc is replaced by **clang**.
+
+A basic CMakeLists.txt is provided.
+
+- [clang-tools] CLIs 17.0.6
+- [cmake] build automation tool 3.28.3
+- [cmake-lsp] build automation tool LSP
+- [cppcheck] static analysis 2.13.4
+- [doxygen] documentation generation 1.10.0
+- [gnumake] build automation tool
+- [gtest] testing framework 1.12.1
+- [lcov] code coverage analyzer 1.0
+- [lldb] clang debug adapter
+- [valgrind] debugging, profiling
+
+#### Disabled
+
+- [codespell] spell checker 2.2.6
+- [conan] package manager 2.0.17
+- [gdb] debugger 14.1
+- [vcpkg] library manager
+- [vcpkg-tool] library manager tools
 
 ### [`clojure`](./clojure/)
 
@@ -225,6 +227,12 @@ A dev template that's fully customizable.
 
 - [Odin] 4.14.1
 
+### [`openscad`](./openscad/)
+
+- [OpenSCAD] compiler generating 3D models
+- [OpenSCAD-LSP] LSP for the same-named language
+- [sca2d] Static analysis for OpenSCAD
+
 ### [`opa`](./opa/)
 
 - [Open Policy Agent][opa] 0.54.0
@@ -278,7 +286,8 @@ A dev template that's fully customizable.
 
 ### [`rust`](./rust/)
 
-- [Rust], including [cargo], [Clippy], and the other standard tools. The Rust version is determined as follows, in order:
+- [Rust], including [cargo], [Clippy], and the other standard tools. The Rust
+  version is determined as follows, in order:
 
   - From the `rust-toolchain.toml` file if present
   - From the `rust-toolchain` file if present
@@ -318,7 +327,9 @@ A dev template that's fully customizable.
 
 ## Code organization
 
-All of the templates have only the root [flake](./flake.nix) as a flake input. That root flake provides a common revision of [Nixpkgs] and [`flake-utils`][flake-utils] to all the templates.
+The templates only have the root [flake](./flake.nix) as input. That root flake
+provides a common revision of [Nixpkgs] and [`flake-utils`][flake-utils] to all
+the templates.
 
 [boot]: https://boot-clj.com
 [buf]: https://github.com/bufbuild/buf
@@ -423,7 +434,6 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [purescript]: https://github.com/purescript/purescript
 [purescript-language-server]: https://github.com/nwolverson/purescript-language-server
 [purs-tidy]: https://github.com/natefaubion/purescript-tidy
-[python]: https://python.org
 [r]: https://r-project.org
 [release]: https://github.com/NixOS/nixpkgs/releases/tag/22.11
 [rmarkdown]: https://rmarkdown.rstudio.com

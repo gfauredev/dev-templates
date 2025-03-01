@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based Shell development environment";
+  description = "A Nix-flake-based Typst development environment";
   inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
   outputs = { self, nixpkgs }:
     let
@@ -12,10 +12,9 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            bash-language-server # Bash, shell scripts LSP
-            shellcheck # Static analysis
-            shfmt # Formater
-            explain # Explain system call errors
+            typst # Advanced document processor
+            tinymist # Typst LSP
+            typstyle # Typst formatter
           ];
         };
       });

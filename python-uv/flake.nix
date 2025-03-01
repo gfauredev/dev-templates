@@ -11,19 +11,17 @@
     in {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          venvDir = ".venv";
+          # venvDir = ".venv";
           packages = with pkgs;
             [
-              python3 # The very tool
+              uv # Fast packages and environment manager
               ruff # Fast lint and format
               mypy # Type checking, static analysis
             ] ++ (with pkgs.python3Packages; [
-              pip # Package manager
               rope # Smart refactoring
               python-lsp-server # Python LSP
               pylsp-mypy # Mypy LSP
               pylsp-rope # Rope LSP
-              venvShellHook
             ]);
         };
       });

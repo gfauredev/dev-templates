@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based development environment";
+  description = "Lua dev environment";
   inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
   outputs = { self, nixpkgs }:
     let
@@ -14,11 +14,8 @@
         (system: f { pkgs = import nixpkgs { inherit system; }; });
     in {
       devShells = forEachSupportedSystem ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [ gnumake ]; # Packages / Available tools
-          env = { }; # Environment variable
-          shellHook = ""; # Shell command(s) activated when entering dev env
-        };
+        default =
+          pkgs.mkShell { packages = with pkgs; [ lua lua-language-server ]; };
       });
     };
 }

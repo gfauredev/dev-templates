@@ -35,6 +35,7 @@ direnv allow
 | [Jupyter]                        | [`jupyter`](./jupyter/)               |
 | [Kotlin]                         | [`kotlin`](./kotlin/)                 |
 | [LaTeX]                          | [`latex`](./latex/)                   |
+| [Lua]                            | [`lua`](./lua/)                       |
 | [Nickel]                         | [`nickel`](./nickel/)                 |
 | [Nim]                            | [`nim`](./nim/)                       |
 | [Nix]                            | [`nix`](./nix/)                       |
@@ -57,6 +58,7 @@ direnv allow
 | [Shell]                          | [`shell`](./shell/)                   |
 | [SWI-prolog]                     | [`swi-prolog`](./swi-prolog/)         |
 | [Swift]                          | [`swift`](./swift)                    |
+| [Typst]                          | [`typst`](./typst)                    |
 | [Vlang]                          | [`vlang`](./vlang/)                   |
 | [Zig]                            | [`zig`](./zig/)                       |
 
@@ -185,6 +187,11 @@ A dev template that's fully customizable.
 - [tectonic]
 - [texlab]
 
+### [`lua`](./lua/)
+
+- [lua]
+- [lua-lsp]
+
 ### [`lean4`](./lean4/)
 
 - [Lean] 4.9.0
@@ -273,6 +280,22 @@ A dev template that's fully customizable.
 
 - [Python] 3.11.4
 - [pip] 23.0.1
+- [ruff] lint and format
+- [mypy] type checking, static analysis
+- [rope] smart refactoring
+- [python-lsp-server] python LSP
+- [pylsp-mypy] mypy LSP
+- [pylsp-rope] rope LSP
+
+#### [`python-uv`](./python-uv/)
+
+- [uv] Packages and environment manager
+- [ruff] lint and format
+- [mypy] type checking, static analysis
+- [rope] smart refactoring
+- [python-lsp-server] python LSP
+- [pylsp-mypy] mypy LSP
+- [pylsp-rope] rope LSP
 
 ### [`r`](./r/)
 
@@ -304,7 +327,9 @@ A dev template that's fully customizable.
 
 ### [`shell`](./shell/)
 
-- [shellcheck] 0.9.0
+- [bash-lsp] language server
+- [shellcheck] static analysis 0.9.0
+- [shfmt] formatter
 
 ### [`swi-prolog`](./swi-prolog/)
 
@@ -314,6 +339,12 @@ A dev template that's fully customizable.
 
 - [Swift] 5.8
 - [sourcekit-lsp]
+
+### [`typst`](./typst/)
+
+- [Typst] compiler generating PDFs
+- [Tinymist] LSP for Typst
+- [Typstyle] formater for Typst
 
 ### [`vlang`](./vlang/)
 

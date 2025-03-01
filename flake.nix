@@ -1,18 +1,18 @@
 {
-  description = "Ready-made templates for easily creating flake-driven environments";
-
+  description = "Templates for quickly creating flake-based environments";
   inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2411.*";
-
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
-        pkgs = nixpkgs.legacyPackages.${system};
-      });
+      supportedSystems =
+        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSupportedSystem = f:
+        nixpkgs.lib.genAttrs supportedSystems
+        (system: f { pkgs = nixpkgs.legacyPackages.${system}; });
 
       scriptDrvs = forEachSupportedSystem ({ pkgs }:
         let
-          getSystem = "SYSTEM=$(nix eval --impure --raw --expr 'builtins.currentSystem')";
+          getSystem =
+            "SYSTEM=$(nix eval --impure --raw --expr 'builtins.currentSystem')";
           forEachDir = exec: ''
             for dir in */; do
               (
@@ -22,8 +22,7 @@
               )
             done
           '';
-        in
-        {
+        in {
           format = pkgs.writeShellApplication {
             name = "format";
             runtimeInputs = with pkgs; [ nixpkgs-fmt ];
@@ -63,48 +62,14 @@
             '';
           };
         });
-    in
-    {
+    in {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages =
-            with scriptDrvs.${pkgs.system}; [
-              build
-              check
-              format
-              update
-            ] ++ [ pkgs.nixpkgs-fmt ];
+          packages = with scriptDrvs.${pkgs.system};
+            [ build check format update ] ++ [ pkgs.nixpkgs-fmt ];
         };
       });
-
-      packages = forEachSupportedSystem ({ pkgs }:
-        rec {
-          default = dvt;
-          dvt = pkgs.writeShellApplication {
-            name = "dvt";
-            bashOptions = [ "errexit" "pipefail" ];
-            text = ''
-              if [ -z "''${1}" ]; then
-                echo "no template specified"
-                exit 1
-              fi
-
-              TEMPLATE=$1
-
-              nix \
-                --experimental-features 'nix-command flakes' \
-                flake init \
-                --template \
-                "github:the-nix-way/dev-templates#''${TEMPLATE}"
-            '';
-          };
-        }
-      );
-    }
-
-    //
-
-    {
+    } // {
       templates = rec {
         default = empty;
 
@@ -188,6 +153,11 @@
           description = "LaTeX development environment";
         };
 
+        lua = {
+          path = ./lua;
+          description = "Lua development environment";
+        };
+
         lean4 = {
           path = ./lean4;
           description = "Lean 4 development environment";
@@ -216,6 +186,11 @@
         ocaml = {
           path = ./ocaml;
           description = "OCaml development environment";
+        };
+
+        openscad = {
+          path = ./openscad;
+          description = "OpenSCAD";
         };
 
         opa = {
@@ -253,6 +228,11 @@
           description = "Python development environment";
         };
 
+        python-uv = {
+          path = ./python-uv;
+          description = "Python uv development environment";
+        };
+
         r = {
           path = ./r;
           description = "R development environment";
@@ -270,7 +250,8 @@
 
         rust-toolchain = {
           path = ./rust-toolchain;
-          description = "Rust development environment with Rust version defined by a rust-toolchain.toml file";
+          description =
+            "Rust development environment with Rust version defined by a rust-toolchain.toml file";
         };
 
         scala = {
@@ -293,6 +274,11 @@
           description = "Swift development environment";
         };
 
+        typst = {
+          path = ./typst;
+          description = "Typst development environment";
+        };
+
         vlang = {
           path = ./vlang;
           description = "Vlang developent environment";
@@ -306,7 +292,10 @@
         # Aliases
         c = c-cpp;
         cpp = c-cpp;
+        cad = openscad;
+        py = python-uv;
         rt = rust-toolchain;
+        typ = typst;
       };
     };
 }

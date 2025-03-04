@@ -317,6 +317,7 @@ A dev template that's fully customizable.
   - Version 1.78.0 if neither is present
 
 - [rust-analyzer] 2024-04-29
+- [lldb] clang debug adapter
 - [cargo-edit] 0.12.2
 - [cargo-deny] 0.14.23
 

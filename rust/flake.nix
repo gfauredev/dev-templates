@@ -35,13 +35,14 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            rustToolchain
-            openssl
-            pkg-config
             cargo-deny
             cargo-edit
             cargo-watch
-            rust-analyzer
+            lldb # Debug adapter
+            openssl
+            pkg-config
+            rust-analyzer # LSP
+            rustToolchain
           ];
           env = {
             # Required by rust-analyzer

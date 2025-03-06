@@ -35,7 +35,8 @@
             noto-fonts # Google well internationalized fonts
             # Symbols and emoticons
             noto-fonts-emoji # Emojis
-            font-awesome # Icons
+            font-awesome # Icons and symbols
+            nerd-fonts.symbols-only # Even more icons and symbols
           ];
         };
       });

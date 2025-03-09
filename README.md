@@ -86,6 +86,7 @@ A basic CMakeLists.txt is provided.
 - [gtest] testing framework 1.12.1
 - [lcov] code coverage analyzer 1.0
 - [lldb] clang debug adapter
+- [pkg-config] libraries finder
 - [valgrind] debugging, profiling
 
 #### Disabled

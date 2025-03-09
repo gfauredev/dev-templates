@@ -25,6 +25,7 @@
             gtest # Testing framework
             lcov # Code coverage
             lldb # Debug adapter
+            pkg-config # Find libraries
             valgrind # Debugging and profiling
           ];
         };

@@ -66,7 +66,23 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with scriptDrvs.${pkgs.system};
-            [ build check format update ] ++ [ pkgs.nixpkgs-fmt ];
+            [ build check format update ] ++ (with pkgs; [
+              bash-language-server # Bash, shell script LSP
+              cachix # CLI for Nix binary cache
+              lorri # To TEST
+              nil # Nix LSP
+              niv # Dependency management
+              nixfmt # Formater
+              nls # Nickel LSP
+              shellcheck # Shell script analysis
+              shfmt # Shell script formater
+              statix # Lints & suggestions for Nix
+              vscode-langservers-extracted # HTML/CSS/JS(ON)
+              vulnix # NixOS vulnerability scanner
+              haskellPackages.dhall-nix # To TEST
+              taplo # TOML LSP
+              yaml-language-server # YAML LSP
+            ]);
         };
       });
     } // {

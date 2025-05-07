@@ -316,7 +316,7 @@
         cad = cadquery-build123d;
         cq = cadquery-build123d;
         py = python-uv;
-        rs = rust-toolchain;
+        rs = rust;
         rt = rust-toolchain;
         scad = openscad;
         typ = typst;

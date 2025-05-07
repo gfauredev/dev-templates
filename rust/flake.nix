@@ -1,6 +1,7 @@
 {
   description = "A Nix-flake-based Rust development environment";
   inputs = {
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -9,8 +10,7 @@
   };
   outputs = { self, nixpkgs, rust-overlay }:
     let
-      supportedSystems =
-        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
       forEachSupportedSystem = f:
         nixpkgs.lib.genAttrs supportedSystems (system:
           f {

@@ -75,6 +75,6 @@
         };
         defaultPackage = packages.cq-editor;
         apps.default = flake-utils.lib.mkApp { drv = defaultPackage; };
-        devShells.default.packages = [ packages.yacv-env ];
+        devShells.default = pkgs.mkShell { packages = [ packages.yacv-env ]; };
       });
 }

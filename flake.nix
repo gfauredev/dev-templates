@@ -313,10 +313,12 @@
         # Aliases
         c = c-cpp;
         cpp = c-cpp;
-        cad = openscad;
+        cad = cadquery-build123d;
+        cq = cadquery-build123d;
         py = python-uv;
         rs = rust-toolchain;
         rt = rust-toolchain;
+        scad = openscad;
         typ = typst;
       };
     };

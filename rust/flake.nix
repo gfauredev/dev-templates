@@ -44,11 +44,15 @@
             rust-analyzer # LSP
             rustToolchain
           ];
-          env = {
-            # Required by rust-analyzer
-            RUST_SRC_PATH =
-              "${pkgs.rustToolchain}/lib/rustlib/src/rust/library";
-          };
+          # env = {
+          RUST_LOG = "debug";
+          # RUST_SRC_PATH =
+          #   "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+          RUST_SRC_PATH = "${pkgs.rustToolchain}/lib/rustlib/src/rust/library";
+          # May be needed to display on wayland
+          # LD_LIBRARY_PATH =
+          #   (with pkgs; lib.makeLibraryPath [ libGL libxkbcommon wayland ]);
+          # };
         };
       });
     };

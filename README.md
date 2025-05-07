@@ -19,6 +19,7 @@ direnv allow
 | Stack (language, tools…)         | Nix Flake Template                    |
 | :------------------------------- | :------------------------------------ |
 | [Bun]                            | [`bun`](./bun/)                       |
+| [CadQuery]/[Build123d]           | [`cadquery`](./cadquery-build123d/)   |
 | [C]/[C++]                        | [`c-cpp`](./c-cpp/)                   |
 | [Clojure]                        | [`clojure`](./clojure/)               |
 | [Cue]                            | [`cue`](./cue/)                       |
@@ -42,7 +43,7 @@ direnv allow
 | [Node.js][node]                  | [`node`](./node/)                     |
 | [OCaml]                          | [`ocaml`](./ocaml/)                   |
 | [Odin]                           | [`odin`](./odin/)                     |
-| [OpenSCAD][openscad]             | [`opa`](./openscad)                   |
+| [OpenSCAD]                       | [`opa`](./openscad)                   |
 | [Open Policy Agent][opa]         | [`opa`](./opa)                        |
 | [PHP]                            | [`php`](./php/)                       |
 | [PlatformIO]                     | [`platformio`](./platformio/)         |
@@ -366,7 +367,9 @@ the templates.
 
 [boot]: https://boot-clj.com
 [buf]: https://github.com/bufbuild/buf
+[build123d]: https://build123d.readthedocs.io
 [bun]: https://bun.sh
+[cadquery]: https://cadquery.readthedocs.io
 [C]: https://open-std.org/jtc1/sc22/wg14
 [C++]: https://isocpp.org
 [cabal]: https://haskell.org/cabal
@@ -454,6 +457,7 @@ the templates.
 [odin]: https://github.com/odin-lang/Odin
 [omnisharp-roslyn]: https://github.com/OmniSharp/omnisharp-roslyn
 [opa]: https://openpolicyagent.org
+[openscad]: https://openscad.org
 [pandoc]: https://pandoc.org
 [packer]: https://packer.io
 [pip]: https://pypi.org/project/pip

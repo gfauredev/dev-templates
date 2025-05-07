@@ -78,6 +78,11 @@
           description = "Bun development environment";
         };
 
+        cadquery-build123d = {
+          path = ./cadquery-build123d;
+          description = "CadQuery / Build123d environment";
+        };
+
         c-cpp = {
           path = ./c-cpp;
           description = "C/C++ development environment";
@@ -294,6 +299,7 @@
         cpp = c-cpp;
         cad = openscad;
         py = python-uv;
+        rs = rust-toolchain;
         rt = rust-toolchain;
         typ = typst;
       };

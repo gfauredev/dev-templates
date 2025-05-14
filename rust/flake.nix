@@ -38,6 +38,8 @@
             cargo-deny
             cargo-edit
             cargo-watch
+            clippy # Additional Rust lints
+            gitlab-clippy # GitLab Code Quality report
             lldb # Debug adapter
             openssl
             pkg-config

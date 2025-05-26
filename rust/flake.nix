@@ -35,6 +35,8 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
+            cargo-binutils
+            cargo-binstall
             cargo-deny
             cargo-edit
             cargo-watch

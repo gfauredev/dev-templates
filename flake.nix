@@ -318,6 +318,7 @@
         py = python-uv;
         rs = rust;
         rt = rust-toolchain;
+        sh = shell;
         scad = openscad;
         typ = typst;
       };

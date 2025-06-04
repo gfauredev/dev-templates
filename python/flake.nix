@@ -14,15 +14,17 @@
           venvDir = ".venv";
           packages = with pkgs;
             [
-              python3 # The very tool
+              uv # Fast packages and environment manager
               ruff # Fast lint and format
-              mypy # Type checking, static analysis
+              ty # Type checker and LSP
+              # mypy # Type checking, static analysis
             ] ++ (with pkgs.python3Packages; [
-              pip # Package manager
               rope # Smart refactoring
-              python-lsp-server # Python LSP
-              pylsp-mypy # Mypy LSP
-              pylsp-rope # Rope LSP
+              # python-lsp-server # Python LSP
+              # pylsp-mypy # Mypy LSP
+              # pylsp-rope # Rope LSP
+              numpy # Scientific & maths tools
+              matplotlib # Plotting
               venvShellHook
             ]);
         };

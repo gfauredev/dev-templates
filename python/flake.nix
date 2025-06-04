@@ -20,9 +20,9 @@
               # mypy # Type checking, static analysis
             ] ++ (with pkgs.python3Packages; [
               rope # Smart refactoring
-              # python-lsp-server # Python LSP
+              python-lsp-server # Python LSP
+              pylsp-rope # Rope LSP
               # pylsp-mypy # Mypy LSP
-              # pylsp-rope # Rope LSP
               numpy # Scientific & maths tools
               matplotlib # Plotting
               venvShellHook

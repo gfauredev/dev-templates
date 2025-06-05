@@ -22,8 +22,16 @@
               rope # Smart refactoring
               python-lsp-server # Python LSP
               pylsp-rope # Rope LSP
-              # pylsp-mypy # Mypy LSP
-              numpy # Scientific & maths tools
+              # Libraries
+              requests # HTTP requests
+              datetime # Date time
+              numpy # Science & maths tools
+              scipy # Maths & science tools
+              matplotlib # Plotting
+              pandas # Data analysis
+              geopandas # Geo data analysis
+              opencv # Vision
+              tensorflow # Learning
               matplotlib # Plotting
               venvShellHook
             ]);

@@ -17,15 +17,21 @@
               uv # Fast packages and environment manager
               ruff # Fast lint and format
               ty # Type checker and LSP
-              # mypy # Type checking, static analysis
             ] ++ (with pkgs.python3Packages; [
               rope # Smart refactoring
               python-lsp-server # Python LSP
               pylsp-rope # Rope LSP
-              # pylsp-mypy # Mypy LSP
               # Libraries
-              numpy # Scientific & maths tools
-              matplotlib # Plotting
+              # requests # HTTP requests
+              # datetime # Date time
+              # numpy # Science & maths tools
+              # scipy # Maths & science tools
+              # matplotlib # Plotting
+              # pandas # Data analysis
+              # geopandas # Geo data analysis
+              # opencv # Vision
+              # tensorflow # Learning
+              # matplotlib # Plotting
             ]);
         };
       });

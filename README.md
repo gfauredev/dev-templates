@@ -60,6 +60,7 @@ direnv allow
 | [SWI-prolog]                     | [`swi-prolog`](./swi-prolog/)         |
 | [Swift]                          | [`swift`](./swift)                    |
 | [Typst]                          | [`typst`](./typst)                    |
+| [Vagrant]                        | [`vagrant`](./vagrant/)               |
 | [Vlang]                          | [`vlang`](./vlang/)                   |
 | [Zig]                            | [`zig`](./zig/)                       |
 
@@ -349,6 +350,10 @@ A dev template that's fully customizable.
 - [Tinymist] LSP for Typst
 - [Typstyle] formater for Typst
 
+### [`vagrant`](./vagrant/)
+
+- [Vagrant]
+
 ### [`vlang`](./vlang/)
 
 - [Vlang] 0.4.4
@@ -496,6 +501,7 @@ the templates.
 [vcpkg-tool]: https://github.com/microsoft/vcpkg-tool
 [vulnix]: https://github.com/flyingcircusio/vulnix
 [yarn]: https://yarnpkg.com
+[vagrant]: https://developer.hashicorp.com/vagrant
 [vlang]: https://vlang.io
 [zig]: https://ziglang.org
 [zls]: https://github.com/zigtools/zls

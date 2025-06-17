@@ -300,9 +300,14 @@
           description = "Typst development environment";
         };
 
+        vagrant = {
+          path = ./vagrant;
+          description = "Vagrant development environment";
+        };
+
         vlang = {
           path = ./vlang;
-          description = "Vlang developent environment";
+          description = "Vlang development environment";
         };
 
         zig = {
@@ -321,6 +326,7 @@
         sh = shell;
         scad = openscad;
         typ = typst;
+        vm = vagrant;
       };
     };
 }

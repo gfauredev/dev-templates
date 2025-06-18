@@ -15,9 +15,7 @@
     in {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          # venvDir = ".venv";
-          packages = with pkgs;
-            [ vagrant ] ++ (with pkgs.python3Packages; [ python-vagrant ]);
+          packages = with pkgs; [ vagrant python3Packages.python-vagrant ];
         };
       });
     };

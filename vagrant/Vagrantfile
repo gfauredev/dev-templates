@@ -13,20 +13,20 @@ Vagrant.configure("2") do |config|
   #   uname -a
   # SHELL
 
-  config.vm.define "alpine" do |cfg|
-    cfg.vm.box = "generic/alpine319" # Alpine 3.19 (2024 version)
-    cfg.vm.hostname = "alpine"
+  config.vm.define "debian" do |cfg|
+    cfg.vm.box = "debian/bookworm64" # Debian 12 (2023 version)
+    # cfg.vm.box = "generic/debian12" # Debian 12 (2023 version)
+    cfg.vm.hostname = "debian"
     # cfg.vm.provision :docker
-    cfg.vm.provision :shell, path: "apk.sh"
+    cfg.vm.provision :shell, path: "apt.sh"
     # cfg.vm.network :private_network, ip: "192.168.100.10"
   end
 
-  # config.vm.define "debian" do |cfg|
-  #   cfg.vm.box = "debian/bookworm64" # Debian 12 (2023 version)
-  #   cfg.vm.box = "generic/debian12" # Debian 12 (2023 version)
-  #   cfg.vm.hostname = "debian"
+  # config.vm.define "alpine" do |cfg|
+  #   cfg.vm.box = "generic/alpine319" # Alpine 3.19 (2024 version)
+  #   cfg.vm.hostname = "alpine"
   #   cfg.vm.provision :docker
-  #   cfg.vm.provision :shell, path: "apt.sh"
+  #   cfg.vm.provision :shell, path: "apk.sh"
   #   cfg.vm.network :private_network, ip: "192.168.100.10"
   # end
 

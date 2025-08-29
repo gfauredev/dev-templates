@@ -62,6 +62,7 @@ direnv allow
 | [Typst]                          | [`typst`](./typst)                    |
 | [Vagrant]                        | [`vagrant`](./vagrant/)               |
 | [Vlang]                          | [`vlang`](./vlang/)                   |
+| [Web (HTML/CSS/TS)]              | [`web`](./web/)                       |
 | [Zig]                            | [`zig`](./zig/)                       |
 
 ## Template contents

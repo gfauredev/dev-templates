@@ -17,6 +17,10 @@
               uv # Fast packages and environment manager
               ruff # Fast lint and format
               ty # Type checker and LSP
+              # Web + Misc
+              vscode-langservers-extracted # HTML/CSS/JS(ON)
+              taplo # TOML LSP
+              yaml-language-server # YAML LSP
             ] ++ (with pkgs.python3Packages; [
               rope # Smart refactoring
               python-lsp-server # Python LSP

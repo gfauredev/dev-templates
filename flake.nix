@@ -310,6 +310,11 @@
           description = "Vlang development environment";
         };
 
+        web = {
+          path = ./web;
+          description = "Web (HTML/CSS/TS) development environment";
+        };
+
         zig = {
           path = ./zig;
           description = "Zig development environment";
@@ -317,14 +322,18 @@
 
         # Aliases
         c = c-cpp;
-        cpp = c-cpp;
         cad = cadquery-build123d;
+        cpp = c-cpp;
+        css = web;
         cq = cadquery-build123d;
+        html = web;
+        js = web;
         py = python-uv;
         rs = rust;
         rt = rust-toolchain;
         sh = shell;
         scad = openscad;
+        ts = web;
         typ = typst;
         vm = vagrant;
       };

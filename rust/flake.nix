@@ -47,6 +47,10 @@
             pkg-config
             rust-analyzer # LSP
             rustToolchain
+            # Web + Misc
+            vscode-langservers-extracted # HTML/CSS/JS(ON)
+            taplo # TOML LSP
+            yaml-language-server # YAML LSP
           ];
           # env = {
           RUST_LOG = "debug";

@@ -12,9 +12,17 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
+            typescript
+            typescript-language-server # TS LSP
             vscode-langservers-extracted # HTML/CSS/JS(ON)
-            taplo # TOML LSP
             yaml-language-server # YAML LSP
+            taplo # TOML LSP
+            bun # Faster runtime, bundler, package manager
+            # deno # More secure runtime
+            # node2nix
+            # nodejs
+            # nodePackages.pnpm
+            # yarn
           ];
         };
       });

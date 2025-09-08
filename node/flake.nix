@@ -31,6 +31,7 @@
             yarn
             typescript
             typescript-language-server # TS LSP
+            biome
             yaml-language-server # YAML LSP
             taplo # TOML LSP
           ];

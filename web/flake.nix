@@ -14,6 +14,7 @@
           packages = with pkgs; [
             typescript
             typescript-language-server # TS LSP
+            biome
             vscode-langservers-extracted # HTML/CSS/JS(ON)
             yaml-language-server # YAML LSP
             taplo # TOML LSP

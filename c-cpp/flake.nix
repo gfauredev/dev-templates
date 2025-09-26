@@ -26,6 +26,9 @@
             pkg-config # Find libraries
             valgrind # Debugging and profiling
           ];
+          shellHook = ''
+            alias c++ = "c++ -std=c++23 -Wall -Wextra -Wpedantic"
+          '';
         };
       });
     };

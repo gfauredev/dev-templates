@@ -18,6 +18,7 @@
             cmake # Automation tool
             cmake-language-server # LSP
             cppcheck # Static analysis
+            clang-uml # Generate UML from c(++) TEST
             doxygen # Documentation generator
             gnumake # Automation tool
             gtest # Testing framework

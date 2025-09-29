@@ -14,11 +14,12 @@
         } {
           packages = with pkgs; [
             # gcc # Compiler
+            # conan # C++ package manager
             clang-tools # Clang CLIs
             cmake # Automation tool
             cmake-language-server # LSP
             cppcheck # Static analysis
-            clang-uml # Generate UML from c(++) TEST
+            clang-uml # Generate UML from c(++) TEST it
             doxygen # Documentation generator
             gnumake # Automation tool
             gtest # Testing framework
@@ -27,9 +28,13 @@
             pkg-config # Find libraries
             valgrind # Debugging and profiling
           ];
-          shellHook = ''
-            alias c++ = "c++ -std=c++23 -Wall -Wextra -Wpedantic"
-          '';
+          env = {
+            CXX = "c++"; # Use Clang++ as the default C++ compiler
+            CC = "clang"; # Use Clang as the default C compiler
+            CXXFLAGS = ''
+              -std=c++23 -Wall -Wextra -Wpedantic -Wshadow -Wconversion
+            ''; # C++23 and more warnings
+          };
         };
       });
     };

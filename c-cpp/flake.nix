@@ -24,6 +24,7 @@
             clang-uml # Generate UML from c(++) TEST it
             doctest # Testing framework
             doxygen # Documentation generator
+            gdb # Debugger
             gnumake # Automation tool
             gtest # Testing framework
             lcov # Code coverage

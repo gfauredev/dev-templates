@@ -1,98 +1,120 @@
 {
   description = "Templates for quickly creating flake-based environments";
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2411.*";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
   outputs = { self, nixpkgs }:
     let
-      supportedSystems =
-        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSupportedSystem = f:
-        nixpkgs.lib.genAttrs supportedSystems
-        (system: f { pkgs = nixpkgs.legacyPackages.${system}; });
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forEachSupportedSystem =
+        f:
+        inputs.nixpkgs.lib.genAttrs supportedSystems (
+          system:
+          f {
+            inherit system;
+            pkgs = import inputs.nixpkgs { inherit system; };
+          }
+        );
+    in
+    {
+      devShells = forEachSupportedSystem (
+        { pkgs, system }:
+        {
+          default =
+            let
+              getSystem = "SYSTEM=$(nix eval --impure --raw --expr 'builtins.currentSystem')";
+              forEachDir = exec: ''
+                for dir in */; do
+                  (
+                    cd "''${dir}"
 
-      scriptDrvs = forEachSupportedSystem ({ pkgs }:
-        let
-          getSystem =
-            "SYSTEM=$(nix eval --impure --raw --expr 'builtins.currentSystem')";
-          forEachDir = exec: ''
-            for dir in */; do
-              (
-                cd "''${dir}"
+                    ${exec}
+                  )
+                done
+              '';
 
-                ${exec}
-              )
-            done
-          '';
-        in {
-          format = pkgs.writeShellApplication {
-            name = "format";
-            runtimeInputs = with pkgs; [ nixpkgs-fmt ];
+              script =
+                name: runtimeInputs: text:
+                pkgs.writeShellApplication {
+                  inherit name runtimeInputs text;
+                  bashOptions = [
+                    "errexit"
+                    "pipefail"
+                  ];
+                };
+            in
+            pkgs.mkShellNoCC {
+              packages =
+                with pkgs;
+                [
+                  (script "build" [ ] ''
+                    ${getSystem}
+
+                    ${forEachDir ''
+                      echo "building ''${dir}"
+                      nix build ".#devShells.''${SYSTEM}.default"
+                    ''}
+                  '')
+                  (script "check" [ nixfmt ] (forEachDir ''
+                    echo "checking ''${dir}"
+                    nix flake check --all-systems --no-build
+                  ''))
+                  (script "format" [ nixfmt ] ''
+                    git ls-files '*.nix' | xargs nix fmt
+                  '')
+                  (script "check-formatting" [ nixfmt ] ''
+                    git ls-files '*.nix' | xargs nixfmt --check
+                  '')
+                ]
+                ++ [ self.formatter.${system} ];
+            };
+        }
+      );
+
+      formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt);
+
+      packages = forEachSupportedSystem (
+        { pkgs, ... }:
+        rec {
+          default = dvt;
+          dvt = pkgs.writeShellApplication {
+            name = "dvt";
+            bashOptions = [
+              "errexit"
+              "pipefail"
+            ];
             text = ''
-              shopt -s globstar
+              if [ -z "''${1}" ]; then
+                echo "no template specified"
+                exit 1
+              fi
 
-              nixpkgs-fmt -- **/*.nix
+              TEMPLATE=$1
+
+              nix \
+                --experimental-features 'nix-command flakes' \
+                flake init \
+                --template \
+                "https://flakehub.com/f/the-nix-way/dev-templates/0.1#''${TEMPLATE}"
             '';
           };
+        }
+      );
+    }
 
-          # only run this locally, as Actions will run out of disk space
-          build = pkgs.writeShellApplication {
-            name = "build";
-            text = ''
-              ${getSystem}
+    //
 
-              ${forEachDir ''
-                echo "building ''${dir}"
-                nix build ".#devShells.''${SYSTEM}.default"
-              ''}
-            '';
+      {
+        templates = rec {
+          default = empty;
+
+          bun = {
+            path = ./bun;
+            description = "Bun development environment";
           };
-
-          check = pkgs.writeShellApplication {
-            name = "check";
-            text = forEachDir ''
-              echo "checking ''${dir}"
-              nix flake check --all-systems --no-build
-            '';
-          };
-
-          update = pkgs.writeShellApplication {
-            name = "update";
-            text = forEachDir ''
-              echo "updating ''${dir}"
-              nix flake update
-            '';
-          };
-        });
-    in {
-      devShells = forEachSupportedSystem ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = with scriptDrvs.${pkgs.system};
-            [ build check format update ] ++ (with pkgs; [
-              bash-language-server # Bash, shell script LSP
-              cachix # CLI for Nix binary cache
-              lorri # To TEST
-              nil # Nix LSP
-              niv # Dependency management
-              nixfmt # Formater
-              nls # Nickel LSP
-              shellcheck # Shell script analysis
-              shfmt # Shell script formater
-              statix # Lints & suggestions for Nix
-              vscode-langservers-extracted # HTML/CSS/JS(ON)
-              vulnix # NixOS vulnerability scanner
-              haskellPackages.dhall-nix # To TEST
-              taplo # TOML LSP
-              yaml-language-server # YAML LSP
-            ]);
-        };
-      });
-    } // {
-      templates = rec {
-        default = empty;
-
-        bun = {
-          path = ./bun;
-          description = "Bun development environment";
-        };
 
         cadquery-build123d = {
           path = ./cadquery-build123d;
@@ -269,11 +291,10 @@
           description = "Rust development environment";
         };
 
-        rust-toolchain = {
-          path = ./rust-toolchain;
-          description =
-            "Rust development environment with Rust version defined by a rust-toolchain.toml file";
-        };
+          rust = {
+            path = ./rust;
+            description = "Rust development environment";
+          };
 
         scala = {
           path = ./scala;

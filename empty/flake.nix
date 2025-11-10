@@ -1,12 +1,11 @@
 {
   description = "A Nix-flake-based development environment";
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # unstable Nixpkgs
   outputs = { self, nixpkgs }:
     let
       supportedSystems = [
         "x86_64-linux" # 64-bit Intel/AMD Linux
         "aarch64-linux" # 64-bit ARM Linux
-        "x86_64-darwin" # 64-bit Intel macOS
         "aarch64-darwin" # 64-bit ARM macOS
       ];
       forEachSupportedSystem = f:

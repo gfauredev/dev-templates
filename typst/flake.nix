@@ -1,6 +1,6 @@
 {
   description = "A Nix-flake-based Typst development environment";
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # unstable Nixpkgs
   outputs = { self, nixpkgs }:
     let
       supportedSystems =
@@ -37,7 +37,9 @@
             nerd-fonts.symbols-only # Even more icons and symbols
             # font-awesome # Icons and symbols
             # noto-fonts-emoji # Emojis
-          ];
+          ]++ (with typstPackages; [
+                # Typst packages
+          ]);
         };
       });
     };

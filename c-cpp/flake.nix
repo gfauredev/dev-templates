@@ -2,7 +2,7 @@
   description = "A Nix-flake-based C/C++ development environment";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable
   # inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  # inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  # inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
   outputs = { self, nixpkgs }:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];

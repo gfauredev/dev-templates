@@ -24,7 +24,7 @@ direnv allow
 | [Dhall]                          | [`dhall`](./dhall/)                   |
 | [Elixir]                         | [`elixir`](./elixir/)                 |
 | [Elm]                            | [`elm`](./elm/)                       |
-| Empty (change at will)           | [`empty`](./empty)                    |
+| Empty                            | [`empty`](./empty)                    |
 | [Gleam]                          | [`gleam`](./gleam/)                   |
 | [Go]                             | [`go`](./go/)                         |
 | [Hashicorp] tools                | [`hashi`](./hashi/)                   |
@@ -76,23 +76,23 @@ Default compiler gcc is replaced by **clang**.
 
 A basic CMakeLists.txt is provided.
 
-- [clang-tools] CLIs 17.0.6
-- [cmake] build automation tool 3.28.3
+- [clang-tools] CLIs
+- [cmake] build automation tool
 - [cmake-lsp] build automation tool LSP
-- [cppcheck] static analysis 2.13.4
-- [doxygen] documentation generation 1.10.0
+- [cppcheck] static analysis
+- [doxygen] documentation generation
 - [gnumake] build automation tool
-- [gtest] testing framework 1.12.1
-- [lcov] code coverage analyzer 1.0
+- [gtest] testing framework
+- [lcov] code coverage analyzer
 - [lldb] clang debug adapter
 - [pkg-config] libraries finder
 - [valgrind] debugging, profiling
 
 #### Disabled
 
-- [codespell] spell checker 2.2.6
-- [conan] package manager 2.0.17
-- [gdb] debugger 14.1
+- [codespell] spell checker
+- [conan] package manager
+- [gdb] debugger
 - [vcpkg] library manager
 - [vcpkg-tool] library manager tools
 
@@ -309,11 +309,11 @@ A dev template that's fully customizable.
 
 ### [`rust`](./rust/)
 
-- [Rust], including [cargo], [Clippy], and the other standard tools. The Rust version is determined as follows, in order:
-
+- [Rust], including [cargo], [Clippy], and the other standard tools,
+  with the Rust version determined as follows, in order
   - From the `rust-toolchain.toml` file if present
   - From the `rust-toolchain` file if present
-  - Version 1.78.0 if neither is present
+  - Version if neither is present
 
 - [rust-analyzer]
 - [lldb] clang debug adapter

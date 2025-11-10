@@ -14,8 +14,6 @@ nix flake init -t "github:gfauredev/dev-templates#$1"
 direnv allow
 ```
 
-## Stacks
-
 | Stack (language, tools…)         | Nix Flake Template                    |
 | :------------------------------- | :------------------------------------ |
 | [Bun]                            | [`bun`](./bun/)                       |
@@ -364,12 +362,6 @@ A dev template that's fully customizable.
 - [LLDB]
 - [ZLS]
 
-## Code organization
-
-The templates only have the root [flake](./flake.nix) as input. That root flake
-provides a common revision of [Nixpkgs] and [`flake-utils`][flake-utils] to all
-the templates.
-
 [boot]: https://boot-clj.com
 [buf]: https://github.com/bufbuild/buf
 [build123d]: https://build123d.readthedocs.io
@@ -442,6 +434,7 @@ the templates.
 [mix]: https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html
 [mono]: https://mono-project.com
 [msbuild]: https://github.com/dotnet/msbuild
+[mypy]: https://todo.com
 [nickel]: https://nickel-lang.org
 [nim]: https://nim-lang.org
 [nimble]: https://github.com/nim-lang/nimble
@@ -470,19 +463,22 @@ the templates.
 [php]: https://php.net
 [platformio]: https://platformio.org
 [python]: https://python.org
+[python-lsp-server]: https://todo.com
+[pylsp-mypy]: https://todo.com
+[pylsp-rope]: https://todo.com
 [pnpm]: https://pnpm.io
 [protobuf]: https://developers.google.com/protocol-buffers
 [pulumi]: https://pulumi.com
 [purescript]: https://github.com/purescript/purescript
 [purescript-language-server]: https://github.com/nwolverson/purescript-language-server
 [purs-tidy]: https://github.com/natefaubion/purescript-tidy
-[python]: https://python.org
 [r]: https://r-project.org
-[release]: https://github.com/NixOS/nixpkgs/releases/tag/22.11
 [rmarkdown]: https://rmarkdown.rstudio.com
 [ruby]: https://ruby-lang.org
 [rust]: https://rust-lang.org
 [rust-analyzer]: https://rust-analyzer.github.io
+[ruff]: https://todo.com
+[rope]: https://todo.com
 [scala]: https://scala-lang.org
 [shellcheck]: https://shellcheck.net
 [statix]: https://github.com/nerdypepper/statix
@@ -498,6 +494,7 @@ the templates.
 [texlive]: https://tug.org/texlive
 [tflint]: https://github.com/terraform-linters/tflint
 [typst]: https://typst.app
+[uv]: https://todo.com
 [vault]: https://vaultproject.io
 [vcpkg]: https://vcpkg.io
 [vcpkg-tool]: https://github.com/microsoft/vcpkg-tool

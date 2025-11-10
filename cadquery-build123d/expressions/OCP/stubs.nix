@@ -1,4 +1,9 @@
-{ stdenv, buildPythonPackage, src, lib }:
+{
+  stdenv,
+  buildPythonPackage,
+  src,
+  lib,
+}:
 
 buildPythonPackage rec {
   version = src.shortRev;

@@ -1,10 +1,10 @@
 {
-  lib
-  , buildPythonPackage
-  , fetchFromGitHub
-  , cadquery
-  , pytestCheckHook
-  , rich
+  lib,
+  buildPythonPackage,
+  fetchFromGitHub,
+  cadquery,
+  pytestCheckHook,
+  rich,
 }:
 buildPythonPackage rec {
   pname = "cq-kit";
@@ -20,5 +20,8 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [ cadquery ];
 
-  checkInputs = [ pytestCheckHook rich ];
+  checkInputs = [
+    pytestCheckHook
+    rich
+  ];
 }

@@ -1,23 +1,24 @@
-{ lib
-  , stdenv
-  , src
-  , buildPythonPackage
-  , pythonOlder
-  , cmake
-  , ninja
-  , glibc
-  , opencascade-occt
-  , llvmPackages
-  , pybind11
-  , libglvnd
-  , xorg
-  , python
-  , writeTextFile
-  , pywrap
-  , vtk
-  , rapidjson
-  , lief
-  , path
+{
+  lib,
+  stdenv,
+  src,
+  buildPythonPackage,
+  pythonOlder,
+  cmake,
+  ninja,
+  glibc,
+  opencascade-occt,
+  llvmPackages,
+  pybind11,
+  libglvnd,
+  xorg,
+  python,
+  writeTextFile,
+  pywrap,
+  vtk,
+  rapidjson,
+  lief,
+  path,
 }:
 let
   # We need to use an unmodified version number for the dist-utils version so
@@ -60,7 +61,6 @@ let
 
   };
 
-
   # intermediate step, do pybind, cmake in the next step
   ocp-pybound = stdenv.mkDerivation rec {
     pname = "pybound-ocp";
@@ -88,27 +88,33 @@ let
       export PYBIND11_USE_CMAKE=1
     '';
 
-  # the order of the following includes is critical, but makes utterly zero sense to me. Order discovered by trial and error and hulk smashing the keyboard.
-    pywrapFlags = 
-    let
-      system = stdenv.hostPlatform.system;
-      compiler = if system == "x86_64-linux" then "x86_64-unknown-linux-gnu"
-                 else if system == "aarch64-linux" then "aarch64-unknown-linux-gnu"
-                 else (throw "unsupported system ${system}");
+    # the order of the following includes is critical, but makes utterly zero sense to me. Order discovered by trial and error and hulk smashing the keyboard.
+    pywrapFlags =
+      let
+        system = stdenv.hostPlatform.system;
+        compiler =
+          if system == "x86_64-linux" then
+            "x86_64-unknown-linux-gnu"
+          else if system == "aarch64-linux" then
+            "aarch64-unknown-linux-gnu"
+          else
+            (throw "unsupported system ${system}");
 
-    in builtins.concatStringsSep " " (
-      map (p: ''-i '' + p) [
-        "${rapidjson}/include"
-        "${vtk}/include/vtk/"
-        "${xorg.xorgproto}/include"
-        "${xorg.libX11.dev}/include"
-        "${libglvnd.dev}/include"
-        "${stdenv.cc.cc}/include/c++/${stdenv.cc.version}"
-        "${stdenv.cc.cc}/include/c++/${stdenv.cc.version}/${compiler}"
-        "${glibc.dev}/include"
-        "${stdenv.cc.cc}/lib/gcc/${compiler}/${stdenv.cc.version}/include-fixed"
-        "${stdenv.cc.cc}/lib/gcc/${compiler}/${stdenv.cc.version}/include"
-    ]);
+      in
+      builtins.concatStringsSep " " (
+        map (p: ''-i '' + p) [
+          "${rapidjson}/include"
+          "${vtk}/include/vtk/"
+          "${xorg.xorgproto}/include"
+          "${xorg.libX11.dev}/include"
+          "${libglvnd.dev}/include"
+          "${stdenv.cc.cc}/include/c++/${stdenv.cc.version}"
+          "${stdenv.cc.cc}/include/c++/${stdenv.cc.version}/${compiler}"
+          "${glibc.dev}/include"
+          "${stdenv.cc.cc}/lib/gcc/${compiler}/${stdenv.cc.version}/include-fixed"
+          "${stdenv.cc.cc}/lib/gcc/${compiler}/${stdenv.cc.version}/include"
+        ]
+      );
 
     buildPhase = ''
       runHook preBuild
@@ -146,7 +152,9 @@ let
       xorg.libX11.dev
       xorg.xorgproto
       vtk
-    ] ++ opencascade-occt.buildInputs ++ vtk.buildInputs;
+    ]
+    ++ opencascade-occt.buildInputs
+    ++ vtk.buildInputs;
 
     preConfigure = ''
       export CMAKE_PREFIX_PATH=${pybind11}/share/cmake/pybind11:$CMAKE_PREFIX_PATH
@@ -219,12 +227,13 @@ let
     '';
   };
 
-in buildPythonPackage {
+in
+buildPythonPackage {
   pname = "OCP";
   inherit version;
   src = ocp-result;
 
-  SETUPTOOLS_SCM_PRETEND_VERSION="${base-version}";
+  SETUPTOOLS_SCM_PRETEND_VERSION = "${base-version}";
 
   prePatch = ''
     cp ${setuppy} ./setup.py
@@ -232,7 +241,10 @@ in buildPythonPackage {
 
   propagatedBuildInputs = [ opencascade-occt ];
 
-  pythonImportsCheck = [ "OCP" "OCP.gp" ];
+  pythonImportsCheck = [
+    "OCP"
+    "OCP.gp"
+  ];
 
   meta = with lib; {
     description = "Python wrapper for Opencascade Technology ${version} generated using pywrap";

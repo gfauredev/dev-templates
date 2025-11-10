@@ -1,10 +1,11 @@
-{ lib
-, mkDerivationWith
-, python3Packages
+{
+  lib,
+  mkDerivationWith,
+  python3Packages,
   # , fetchFromGitHub
-, makeDesktopItem
-, copyDesktopItems
-, src
+  makeDesktopItem,
+  copyDesktopItems,
+  src,
 }:
 
 mkDerivationWith python3Packages.buildPythonApplication {
@@ -72,7 +73,11 @@ mkDerivationWith python3Packages.buildPythonApplication {
       desktopName = "CadQuery";
       icon = "cadquery";
       exec = "cq-editor %f";
-      categories = [ "Graphics" "3DGraphics" "Engineering" ];
+      categories = [
+        "Graphics"
+        "3DGraphics"
+        "Engineering"
+      ];
       type = "Application";
       comment = "CadQuery GUI editor based on PyQT";
     })
@@ -82,7 +87,10 @@ mkDerivationWith python3Packages.buildPythonApplication {
     description = "CadQuery GUI editor based on PyQT";
     homepage = "https://github.com/CadQuery/CQ-editor";
     license = licenses.asl20;
-    maintainers = with maintainers; [ costrouc marcus7070 ];
+    maintainers = with maintainers; [
+      costrouc
+      marcus7070
+    ];
   };
 
 }

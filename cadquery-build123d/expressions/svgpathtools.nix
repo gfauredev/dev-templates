@@ -7,7 +7,8 @@
   numpy,
   scipy,
   svgwrite,
-}: let
+}:
+let
   pname = "svgpathtools";
   version = "1.6.1";
   src = fetchPypi {
@@ -15,9 +16,13 @@
     hash = "sha256-cFTm3hlT4pW/Vl1TXVhWlUU7CfjbSi98SFM0hzIJej4=";
   };
 in
-  buildPythonPackage {
-    inherit src pname version;
-    format = "setuptools";
-    nativeCheckInputs = [pytestCheckHook];
-    propagatedBuildInputs = [numpy scipy svgwrite];
-  }
+buildPythonPackage {
+  inherit src pname version;
+  format = "setuptools";
+  nativeCheckInputs = [ pytestCheckHook ];
+  propagatedBuildInputs = [
+    numpy
+    scipy
+    svgwrite
+  ];
+}

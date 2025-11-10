@@ -1,34 +1,34 @@
 # adapted from github:conda-forge/occt-feedstock which is the canonical cadquery source.
 {
-  stdenv
-  , lib
-  , fetchurl
-  , fetchpatch
-  , cmake
-  , ninja
-  , tcl
-  , tk
-  , libGL
-  , libGLU
-  , libXext
-  , libXmu
-  , libXi
-  , vtk
-  , xorg
-  , freetype
-  , freeimage
-  , fontconfig
-  , tbb_2021_11
-  , rapidjson
-  , glew
+  stdenv,
+  lib,
+  fetchurl,
+  fetchpatch,
+  cmake,
+  ninja,
+  tcl,
+  tk,
+  libGL,
+  libGLU,
+  libXext,
+  libXmu,
+  libXi,
+  vtk,
+  xorg,
+  freetype,
+  freeimage,
+  fontconfig,
+  tbb_2021_11,
+  rapidjson,
+  glew,
 }:
 let
   vtk_version = lib.versions.majorMinor vtk.version;
 in
-  stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   pname = "opencascade-occt";
   version = "7.7.2";
-  commit = "V${builtins.replaceStrings ["."] ["_"] version}";
+  commit = "V${builtins.replaceStrings [ "." ] [ "_" ] version}";
 
   src = fetchurl {
     name = "occt-${commit}.tar.gz";
@@ -36,7 +36,10 @@ in
     sha256 = "sha256-M0G/pJuxsJu5gRk0rIgC173/XxI1ERpmCtWjgr/0dyY=";
   };
 
-  nativeBuildInputs = [ cmake ninja ];
+  nativeBuildInputs = [
+    cmake
+    ninja
+  ];
   buildInputs = [
     tcl
     tk
@@ -53,7 +56,8 @@ in
     tbb_2021_11
     rapidjson
     glew
-  ] ++ vtk.buildInputs;
+  ]
+  ++ vtk.buildInputs;
 
   patches = [
     (fetchpatch {
@@ -84,7 +88,7 @@ in
   meta = with lib; {
     description = "Open CASCADE Technology, libraries for 3D modeling and numerical simulation";
     homepage = "https://www.opencascade.org/";
-    license = licenses.lgpl21;  # essentially...
+    license = licenses.lgpl21; # essentially...
     # The special exception defined in the file OCCT_LGPL_EXCEPTION.txt
     # are basically about making the license a little less share-alike.
     maintainers = with maintainers; [ marcus7070 ];

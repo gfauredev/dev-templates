@@ -1,12 +1,13 @@
-{ lib
-  , stdenv
-  , fetchFromGitHub
-  , cmake
-  , octave ? null
-  , python
-  , swig
-  , numpy
-  , buildPythonPackage
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  octave ? null,
+  python,
+  swig,
+  numpy,
+  buildPythonPackage,
 }:
 
 buildPythonPackage rec {
@@ -43,7 +44,8 @@ buildPythonPackage rec {
     "--without-guile"
     "--with-python"
     "--without-matlab"
-  ] ++ lib.optionals (octave != null) [
+  ]
+  ++ lib.optionals (octave != null) [
     "--with-octave"
     "M_INSTALL_DIR=$(out)/${octave.sitePath}/m"
     "OCT_INSTALL_DIR=$(out)/${octave.sitePath}/oct"

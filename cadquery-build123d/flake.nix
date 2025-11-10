@@ -9,8 +9,7 @@
       flake = false;
     };
     cq-editor-src = {
-      url =
-        "github:CadQuery/CQ-editor/4ef178af06d24a53fee87d576f8cada14c0111a3";
+      url = "github:CadQuery/CQ-editor/4ef178af06d24a53fee87d576f8cada14c0111a3";
       flake = false;
     };
     ocp-src = {
@@ -31,11 +30,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      ...
+    }@inputs:
     let
       # someone else who can do the testing might want to extend this to other systems
-      systems = [ "aarch64-linux" "x86_64-linux" ];
-    in flake-utils.lib.eachSystem systems (system:
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+    in
+    flake-utils.lib.eachSystem systems (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -52,7 +62,12 @@
         lib3mf-231 = pkgs.callPackage ./expressions/lib3mf.nix { };
         py-overrides = import expressions/py-overrides.nix {
           inherit (inputs)
-            pywrap-src ocp-src ocp-stubs-src cadquery-src pybind11-stubgen-src;
+            pywrap-src
+            ocp-src
+            ocp-stubs-src
+            cadquery-src
+            pybind11-stubgen-src
+            ;
           inherit (pkgs) fetchFromGitHub;
           # NOTE(vinszent): Latest dev env uses LLVM 15 (https://github.com/CadQuery/OCP/blob/master/environment.devenv.yml)
           llvmPackages = pkgs.llvmPackages_15;
@@ -64,9 +79,15 @@
           packageOverrides = py-overrides;
           self = python;
         };
-      in rec {
+      in
+      rec {
         packages = {
-          inherit (python.pkgs) cadquery cq-kit cq-warehouse build123d;
+          inherit (python.pkgs)
+            cadquery
+            cq-kit
+            cq-warehouse
+            build123d
+            ;
           inherit python;
           cq-editor = pkgs.libsForQt5.callPackage ./expressions/cq-editor.nix {
             python3Packages = python.pkgs;
@@ -78,5 +99,6 @@
         defaultPackage = packages.cq-editor;
         apps.default = flake-utils.lib.mkApp { drv = defaultPackage; };
         devShells.default = pkgs.mkShell { packages = [ packages.yacv-env ]; };
-      });
+      }
+    );
 }

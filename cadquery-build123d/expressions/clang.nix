@@ -1,11 +1,11 @@
 {
-  lib
-  , buildPythonPackage
-  , fetchFromGitHub
-  , python
-  , llvmPackages
-  , writeTextFile
-  , setuptools
+  lib,
+  buildPythonPackage,
+  fetchFromGitHub,
+  python,
+  llvmPackages,
+  writeTextFile,
+  setuptools,
 }:
 let
   setuppy = writeTextFile {
@@ -23,9 +23,11 @@ let
           packages=find_packages(),
           test_suite="tests",
       )
-    '';};
+    '';
+  };
 
-in buildPythonPackage rec {
+in
+buildPythonPackage rec {
   pname = "clang";
   version = llvmPackages.clang-unwrapped.version;
 

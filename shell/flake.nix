@@ -23,11 +23,12 @@
         { pkgs }:
         {
           default = pkgs.mkShellNoCC {
-            packages = with pkgs; [ bash-language-server # Bash, shell scripts LSP
-            shellcheck # Static analysis
-            shfmt # Formater
-            explain # Explain system call errors
- ];
+            packages = with pkgs; [
+              bash-language-server # Bash, shell scripts LSP
+              shellcheck # Static analysis
+              shfmt # Formater
+              explain # Explain system call errors
+            ];
           };
         }
       );

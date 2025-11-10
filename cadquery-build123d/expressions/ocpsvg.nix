@@ -27,11 +27,17 @@ buildPythonPackage {
       --replace "cadquery-ocp" "ocp"
   '';
 
-  build-system = [ setuptools-scm git ];
+  build-system = [
+    setuptools-scm
+    git
+  ];
 
   nativeCheckInputs = [ pytestCheckHook ];
 
-  dependencies = [ocp svgpathtools svgelements ];
+  dependencies = [
+    ocp
+    svgpathtools
+    svgelements
+  ];
 
 }
-

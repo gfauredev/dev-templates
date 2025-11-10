@@ -18,4 +18,3 @@ buildPythonPackage {
     python -c 'import trianglesolver; trianglesolver.run_lots_of_tests()'
   '';
 }
-

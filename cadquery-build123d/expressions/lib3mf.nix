@@ -23,9 +23,16 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-klssRLh4ktKSe1K3sHPlwXznU6GWe8csoioHT1xyYHQ=";
   };
 
-  nativeBuildInputs = [cmake ninja pkg-config];
+  nativeBuildInputs = [
+    cmake
+    ninja
+    pkg-config
+  ];
 
-  outputs = ["out" "dev"];
+  outputs = [
+    "out"
+    "dev"
+  ];
 
   cmakeFlags = [
     "-DCMAKE_INSTALL_INCLUDEDIR=include/lib3mf"
@@ -36,17 +43,12 @@ stdenv.mkDerivation rec {
     "-DLIB3MF_TESTS=OFF"
   ];
 
-  buildInputs =
-    [
-      libzip
-      gtest
-      openssl
-    ]
-    ++ (
-      if stdenv.isDarwin
-      then [libossp_uuid]
-      else [libuuid]
-    );
+  buildInputs = [
+    libzip
+    gtest
+    openssl
+  ]
+  ++ (if stdenv.isDarwin then [ libossp_uuid ] else [ libuuid ]);
 
   postPatch = ''
     # This lets us build the tests properly on aarch64-darwin.
@@ -66,7 +68,7 @@ stdenv.mkDerivation rec {
     description = "Reference implementation of the 3D Manufacturing Format file standard";
     homepage = "https://3mf.io/";
     license = licenses.bsd2;
-    maintainers = with maintainers; [gebner];
+    maintainers = with maintainers; [ gebner ];
     platforms = platforms.all;
   };
 }

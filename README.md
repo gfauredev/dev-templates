@@ -52,7 +52,6 @@ direnv allow
 | [R]                              | [`r`](./r/)                           |
 | [Ruby]                           | [`ruby`](./ruby/)                     |
 | [Rust]                           | [`rust`](./rust/)                     |
-| [Rust from toolchain file][rust] | [`rust-toolchain`](./rust-toolchain/) |
 | [Scala]                          | [`scala`](./scala/)                   |
 | [Shell]                          | [`shell`](./shell/)                   |
 | [SWI-prolog]                     | [`swi-prolog`](./swi-prolog/)         |
@@ -65,8 +64,7 @@ direnv allow
 
 ## Template contents
 
-The sections below list what each template includes. In all cases, you're free
-to add and remove packages as you see fit; the templates are just boilerplate.
+> What each template includes
 
 ### [`bun`](./bun/)
 
@@ -362,6 +360,7 @@ A dev template that's fully customizable.
 - [LLDB]
 - [ZLS]
 
+[bash-lsp]: https://todo.com
 [boot]: https://boot-clj.com
 [buf]: https://github.com/bufbuild/buf
 [build123d]: https://build123d.readthedocs.io
@@ -379,6 +378,8 @@ A dev template that's fully customizable.
 [clippy]: https://github.com/rust-lang/rust-clippy
 [clojure]: https://clojure.org
 [cmake]: https://cmake.org
+[cmake-lsp]: https://todo.com
+[gnumake]: https://todo.com
 [codespell]: https://github.com/codespell-project/codespell
 [composer]: https://getcomposer.org
 [conan]: https://conan.io
@@ -427,6 +428,7 @@ A dev template that's fully customizable.
 [lean]: https://lean-lang.org
 [lcov]: https://ltp.sourceforge.net/coverage/lcov.php
 [lua]: https://www.lua.org
+[lua-lsp]: https://www.lua.org
 [leiningen]: https://leiningen.org
 [levant]: https://github.com/hashicorp/levant
 [lldb]: https://lldb.llvm.org
@@ -457,6 +459,7 @@ A dev template that's fully customizable.
 [omnisharp-roslyn]: https://github.com/OmniSharp/omnisharp-roslyn
 [opa]: https://openpolicyagent.org
 [openscad]: https://openscad.org
+[openscad-lsp]: https://openscad.org
 [pandoc]: https://pandoc.org
 [packer]: https://packer.io
 [pip]: https://pypi.org/project/pip
@@ -465,6 +468,7 @@ A dev template that's fully customizable.
 [platformio]: https://platformio.org
 [python]: https://python.org
 [python-lsp-server]: https://todo.com
+[pkg-config]: https://todo.com
 [pylsp-mypy]: https://todo.com
 [pylsp-rope]: https://todo.com
 [pnpm]: https://pnpm.io
@@ -481,8 +485,10 @@ A dev template that's fully customizable.
 [ruff]: https://todo.com
 [rope]: https://todo.com
 [scala]: https://scala-lang.org
+[sca2d]: https://openscad.org
 [shellcheck]: https://shellcheck.net
 [statix]: https://github.com/nerdypepper/statix
+[shfmt]: https://todo.com
 [sbt]: https://scala-sbt.org
 [sourcekit-lsp]: https://github.com/swiftlang/sourcekit-lsp
 [spago]: https://github.com/purescript/spago
@@ -496,8 +502,11 @@ A dev template that's fully customizable.
 [texlive]: https://tug.org/texlive
 [tflint]: https://github.com/terraform-linters/tflint
 [typst]: https://typst.app
+[tinymist]: https://todo.com
+[typstyle]: https://todo.com
 [uv]: https://todo.com
 [vault]: https://vaultproject.io
+[valgrind]: https://todo.com
 [vcpkg]: https://vcpkg.io
 [vcpkg-tool]: https://github.com/microsoft/vcpkg-tool
 [vulnix]: https://github.com/flyingcircusio/vulnix

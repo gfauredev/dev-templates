@@ -60,7 +60,7 @@ direnv allow
 | [Typst]                          | [`typst`](./typst)                    |
 | [Vagrant]                        | [`vagrant`](./vagrant/)               |
 | [Vlang]                          | [`vlang`](./vlang/)                   |
-| [Web (HTML/CSS/TS)]              | [`web`](./web/)                       |
+| [Web] (HTML/CSS/TS)              | [`web`](./web/)                       |
 | [Zig]                            | [`zig`](./zig/)                       |
 
 ## Template contents
@@ -502,5 +502,6 @@ A dev template that's fully customizable.
 [yarn]: https://yarnpkg.com
 [vagrant]: https://developer.hashicorp.com/vagrant
 [vlang]: https://vlang.io
+[web]: https://nodejs.org
 [zig]: https://ziglang.org
 [zls]: https://github.com/zigtools/zls

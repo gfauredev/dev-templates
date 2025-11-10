@@ -426,6 +426,7 @@ A dev template that's fully customizable.
 [latex]: https://latex-project.org
 [lean]: https://lean-lang.org
 [lcov]: https://ltp.sourceforge.net/coverage/lcov.php
+[lua]: https://www.lua.org
 [leiningen]: https://leiningen.org
 [levant]: https://github.com/hashicorp/levant
 [lldb]: https://lldb.llvm.org
@@ -485,6 +486,7 @@ A dev template that's fully customizable.
 [sbt]: https://scala-sbt.org
 [sourcekit-lsp]: https://github.com/swiftlang/sourcekit-lsp
 [spago]: https://github.com/purescript/spago
+[shell]: https://cgit.git.savannah.gnu.org/cgit/bash.git
 [swi-prolog]: https://www.swi-prolog.org
 [swift]: https://swift.org
 [tectonic]: https://tectonic-typesetting.github.io

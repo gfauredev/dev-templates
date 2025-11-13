@@ -14,53 +14,54 @@ nix flake init -t "github:gfauredev/dev-templates#$1"
 direnv allow
 ```
 
-| Stack (language, tools…)         | Nix Flake Template                    |
-| :------------------------------- | :------------------------------------ |
-| [Bun]                            | [`bun`](./bun/)                       |
-| [CadQuery]/[Build123d]           | [`cadquery`](./cadquery-build123d/)   |
-| [C]/[C++]                        | [`c-cpp`](./c-cpp/)                   |
-| [Clojure]                        | [`clojure`](./clojure/)               |
-| [Cue]                            | [`cue`](./cue/)                       |
-| [Dhall]                          | [`dhall`](./dhall/)                   |
-| [Elixir]                         | [`elixir`](./elixir/)                 |
-| [Elm]                            | [`elm`](./elm/)                       |
-| Empty                            | [`empty`](./empty)                    |
-| [Gleam]                          | [`gleam`](./gleam/)                   |
-| [Go]                             | [`go`](./go/)                         |
-| [Hashicorp] tools                | [`hashi`](./hashi/)                   |
-| [Haskell]                        | [`haskell`](./haskell/)               |
-| [Haxe]                           | [`haxe`](./haxe/)                     |
-| [Java]                           | [`java`](./java/)                     |
-| [Jupyter]                        | [`jupyter`](./jupyter/)               |
-| [Kotlin]                         | [`kotlin`](./kotlin/)                 |
-| [LaTeX]                          | [`latex`](./latex/)                   |
-| [Lua]                            | [`lua`](./lua/)                       |
-| [Nickel]                         | [`nickel`](./nickel/)                 |
-| [Nim]                            | [`nim`](./nim/)                       |
-| [Nix]                            | [`nix`](./nix/)                       |
-| [Node.js][node]                  | [`node`](./node/)                     |
-| [OCaml]                          | [`ocaml`](./ocaml/)                   |
-| [Odin]                           | [`odin`](./odin/)                     |
-| [OpenSCAD]                       | [`opa`](./openscad)                   |
-| [Open Policy Agent][opa]         | [`opa`](./opa)                        |
-| [PHP]                            | [`php`](./php/)                       |
-| [PlatformIO]                     | [`platformio`](./platformio/)         |
-| [Protobuf]                       | [`protobuf`](./protobuf/)             |
-| [Pulumi]                         | [`pulumi`](./pulumi/)                 |
-| [Purescript]                     | [`purescript`](./purescript/)         |
-| [Python]                         | [`python`](./python/)                 |
-| [R]                              | [`r`](./r/)                           |
-| [Ruby]                           | [`ruby`](./ruby/)                     |
-| [Rust]                           | [`rust`](./rust/)                     |
-| [Scala]                          | [`scala`](./scala/)                   |
-| [Shell]                          | [`shell`](./shell/)                   |
-| [SWI-prolog]                     | [`swi-prolog`](./swi-prolog/)         |
-| [Swift]                          | [`swift`](./swift)                    |
-| [Typst]                          | [`typst`](./typst)                    |
-| [Vagrant]                        | [`vagrant`](./vagrant/)               |
-| [Vlang]                          | [`vlang`](./vlang/)                   |
-| [Web] (HTML/CSS/TS)              | [`web`](./web/)                       |
-| [Zig]                            | [`zig`](./zig/)                       |
+| Stack (language, tools…) | Nix Flake Template                  |
+| :----------------------- | :---------------------------------- |
+| [Bun]                    | [`bun`](./bun/)                     |
+| [CadQuery]/[Build123d]   | [`cadquery`](./cadquery-build123d/) |
+| [C]/[C++]                | [`c-cpp`](./c-cpp/)                 |
+| [Clojure]                | [`clojure`](./clojure/)             |
+| [Cue]                    | [`cue`](./cue/)                     |
+| [Dhall]                  | [`dhall`](./dhall/)                 |
+| [Elixir]                 | [`elixir`](./elixir/)               |
+| [Elm]                    | [`elm`](./elm/)                     |
+| Empty                    | [`empty`](./empty)                  |
+| [Gleam]                  | [`gleam`](./gleam/)                 |
+| [Go]                     | [`go`](./go/)                       |
+| [Hashicorp] tools        | [`hashi`](./hashi/)                 |
+| [Haskell]                | [`haskell`](./haskell/)             |
+| [Haxe]                   | [`haxe`](./haxe/)                   |
+| [Java]                   | [`java`](./java/)                   |
+| [Jupyter]                | [`jupyter`](./jupyter/)             |
+| [Kotlin]                 | [`kotlin`](./kotlin/)               |
+| [LaTeX]                  | [`latex`](./latex/)                 |
+| [Lisp] experiments       | [`lisp`](./lisp/)                   |
+| [Lua]                    | [`lua`](./lua/)                     |
+| [Nickel]                 | [`nickel`](./nickel/)               |
+| [Nim]                    | [`nim`](./nim/)                     |
+| [Nix]                    | [`nix`](./nix/)                     |
+| [Node.js][node]          | [`node`](./node/)                   |
+| [OCaml]                  | [`ocaml`](./ocaml/)                 |
+| [Odin]                   | [`odin`](./odin/)                   |
+| [OpenSCAD]               | [`opa`](./openscad)                 |
+| [Open Policy Agent][opa] | [`opa`](./opa)                      |
+| [PHP]                    | [`php`](./php/)                     |
+| [PlatformIO]             | [`platformio`](./platformio/)       |
+| [Protobuf]               | [`protobuf`](./protobuf/)           |
+| [Pulumi]                 | [`pulumi`](./pulumi/)               |
+| [Purescript]             | [`purescript`](./purescript/)       |
+| [Python]                 | [`python`](./python/)               |
+| [R]                      | [`r`](./r/)                         |
+| [Ruby]                   | [`ruby`](./ruby/)                   |
+| [Rust]                   | [`rust`](./rust/)                   |
+| [Scala]                  | [`scala`](./scala/)                 |
+| [Shell]                  | [`shell`](./shell/)                 |
+| [SWI-prolog]             | [`swi-prolog`](./swi-prolog/)       |
+| [Swift]                  | [`swift`](./swift)                  |
+| [Typst]                  | [`typst`](./typst)                  |
+| [Vagrant]                | [`vagrant`](./vagrant/)             |
+| [Vlang]                  | [`vlang`](./vlang/)                 |
+| [Web] (HTML/CSS/TS)      | [`web`](./web/)                     |
+| [Zig]                    | [`zig`](./zig/)                     |
 
 ## Template contents
 
@@ -309,8 +310,8 @@ A dev template that's fully customizable.
 
 ### [`rust`](./rust/)
 
-- [Rust], including [cargo], [Clippy], and the other standard tools,
-  with the Rust version determined as follows, in order
+- [Rust], including [cargo], [Clippy], and the other standard tools, with the
+  Rust version determined as follows, in order
   - From the `rust-toolchain.toml` file if present
   - From the `rust-toolchain` file if present
   - Version if neither is present

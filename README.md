@@ -434,6 +434,7 @@ A dev template that's fully customizable.
 [levant]: https://github.com/hashicorp/levant
 [lldb]: https://lldb.llvm.org
 [lorri]: https://github.com/target/lorri
+[lisp]: https://lisp-lang.org
 [maven]: https://maven.apache.org
 [mix]: https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html
 [mono]: https://mono-project.com

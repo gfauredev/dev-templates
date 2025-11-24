@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based Rust development environment";
+  description = "Nix flake Rust development environment";
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # unstable Nixpkgs
     fenix = {
@@ -10,25 +10,24 @@
   outputs =
     { self, ... }@inputs:
     let
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-      forEachSupportedSystem =
+      systems =
         f:
-        inputs.nixpkgs.lib.genAttrs supportedSystems (
-          system:
-          f {
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                inputs.self.overlays.default
-              ];
-            };
-          }
-        );
+        inputs.nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-linux"
+          ]
+          (
+            system:
+            f {
+              pkgs = import inputs.nixpkgs {
+                inherit system;
+                overlays = [
+                  inputs.self.overlays.default
+                ];
+              };
+            }
+          );
     in
     {
       overlays.default = final: prev: {
@@ -45,7 +44,7 @@
             ]
           );
       };
-      devShells = forEachSupportedSystem (
+      devShells = systems (
         { pkgs }:
         {
           default = pkgs.mkShell {
@@ -58,9 +57,7 @@
               cargo-watch
               rust-analyzer
             ];
-
             env = {
-              # Required by rust-analyzer
               RUST_SRC_PATH = "${pkgs.rustToolchain}/lib/rustlib/src/rust/library";
             };
           };

@@ -18,7 +18,7 @@
       devShells = forEachSupportedSystem (
         { pkgs }:
         {
-          default = pkgs.mkShell.override {
+          default = pkgs.mkShell {
             packages = with pkgs; [
               # clang-tools # Clang CLIs
               # cmake # Automation tool

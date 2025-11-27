@@ -260,6 +260,12 @@
         };
         vm = vagrant;
 
+        verilog = {
+          path = ./verilog;
+          description = "Verilog development environment";
+        };
+        hdl = verilog;
+
         vlang = {
           path = ./vlang;
           description = "Vlang development environment";

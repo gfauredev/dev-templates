@@ -19,14 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-add_compile_options(
-    -Wall
-    -Wextra
-    -Wpedantic
-    -Wshadow
-    -Wconversion
-    -Werror
-)
+add_compile_options(-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror)
 
 option(COVERAGE "Coverage measurement" ON)
 if(COVERAGE)
@@ -37,23 +30,25 @@ set(PROFRAW_MAIN "main.profraw")
 set(PROFRAW_TESTS "tests-%m.profraw")
 set(PROFDATA_FILE "coverage.profdata")
 
-add_executable(main main.cpp)
+add_executable(${PROJECT_NAME}main main.cpp)
 target_include_directories(
-  main PUBLIC ${CMAKE_SOURCE_DIR}/include ${RTMIDI_INCLUDE_DIRS}
-                         ${ALSA_INCLUDE_DIRS})
+  ${PROJECT_NAME}main PUBLIC ${CMAKE_SOURCE_DIR}/include ${RTMIDI_INCLUDE_DIRS}
+                             ${ALSA_INCLUDE_DIRS})
 
 find_package(doctest REQUIRED)
 include(CTest)
 
-add_executable(${PROJECT_NAME}test ${PROJECT_NAME}test.cpp)
-target_include_directories(${PROJECT_NAME}test PRIVATE ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(${PROJECT_NAME}test PRIVATE ${PROJECT_NAME} doctest::doctest)
+add_executable(${PROJECT_NAME}test test.cpp)
+target_include_directories(${PROJECT_NAME}test
+                           PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(${PROJECT_NAME}test PRIVATE ${PROJECT_NAME}
+                                                  doctest::doctest)
 add_test(NAME ${PROJECT_NAME}test COMMAND ${PROJECT_NAME}test)
 
 add_custom_target(
   run
-  COMMAND LLVM_PROFILE_FILE=${CMAKE_BINARY_DIR}/${PROFRAW_MAIN} ./main
-          --timeout 1000 # If daemon
+  COMMAND LLVM_PROFILE_FILE=${CMAKE_BINARY_DIR}/${PROFRAW_MAIN}
+          ./${PROJECT_NAME}main --timeout 1000 # If daemon
   COMMENT "Run main to generate ${PROFRAW_MAIN}")
 add_custom_target(
   tests
@@ -70,13 +65,15 @@ add_custom_target(
 add_custom_target(
   coverage
   COMMAND
-    llvm-cov show ./src/main -instr-profile=${CMAKE_BINARY_DIR}/${PROFDATA_FILE}
-    -format=html -output-dir=${CMAKE_BINARY_DIR}/coverage
+    llvm-cov show ./${PROJECT_NAME}main
+    -instr-profile=${CMAKE_BINARY_DIR}/${PROFDATA_FILE} -format=html
+    -output-dir=${CMAKE_BINARY_DIR}/coverage
   DEPENDS merge_coverage_data
   COMMENT "Coverage report as HTML ${CMAKE_BINARY_DIR}/coverage")
-add_dependencies(run main)
+add_dependencies(run ${PROJECT_NAME}main)
 add_dependencies(tests ${PROJECT_NAME}test)
 add_dependencies(coverage merge_coverage_data)
 
 include(GNUInstallDirs)
 install(TARGETS ${name} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+

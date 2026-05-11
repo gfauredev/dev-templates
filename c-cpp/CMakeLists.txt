@@ -32,8 +32,7 @@ set(PROFDATA_FILE "coverage.profdata")
 
 add_executable(${PROJECT_NAME}main main.cpp)
 target_include_directories(
-  ${PROJECT_NAME}main PUBLIC ${CMAKE_SOURCE_DIR}/include ${RTMIDI_INCLUDE_DIRS}
-                             ${ALSA_INCLUDE_DIRS})
+  ${PROJECT_NAME}main PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 find_package(doctest REQUIRED)
 include(CTest)
@@ -75,5 +74,5 @@ add_dependencies(tests ${PROJECT_NAME}test)
 add_dependencies(coverage merge_coverage_data)
 
 include(GNUInstallDirs)
-install(TARGETS ${name} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS ${PROJECT_NAME}main RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 

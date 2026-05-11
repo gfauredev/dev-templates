@@ -22,12 +22,12 @@
             packages =
               with pkgs;
               [
-                uv # Fast packages and environment manager
                 ruff # Fast lint and format
                 ty # Type checker and LSP
+                uv # Fast packages and environment manager
                 # Web + Misc
-                vscode-langservers-extracted # HTML/CSS/JS(ON)
                 taplo # TOML LSP
+                vscode-langservers-extracted # HTML/CSS/JS(ON)
                 yaml-language-server # YAML LSP
               ]
               ++ (with pkgs.python3Packages; [

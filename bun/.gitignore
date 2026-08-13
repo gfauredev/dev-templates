@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+.astro/
+
+# Tooling
+.direnv/
+
+# Build
+dist/
+result
+
+# Misc
+.~lock*

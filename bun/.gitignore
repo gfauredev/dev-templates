@@ -1,13 +1,42 @@
-# Dependencies
+# Dependencies (bun install)
 node_modules/
 .astro/
 
-# Tooling
-.direnv/
-
-# Build
+# Output
+out
 dist/
 result
+*.tgz
+
+# Code coverage
+coverage
+*.lcov
+
+# Logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# Dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# Tooling
+.direnv/
 
 # Misc
 .~lock*

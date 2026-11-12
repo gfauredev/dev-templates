@@ -1,0 +1,27 @@
+[package]
+name = "project"
+description = "TODO"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+default-run = "project"
+
+[lib]
+name = "project_lib"
+crate-type = ["lib"]
+
+[features]
+# Enabled for production builds: serve the embedded frontend (`ui/dist`)
+# instead of the Vite development server.
+custom-protocol = ["tauri/custom-protocol"]
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+tauri = { version = "2.12.5", features = [] }
+
+[build-dependencies]
+tauri-build = { version = "2.7.4", features = [] }

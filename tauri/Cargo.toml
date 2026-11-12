@@ -1,0 +1,44 @@
+[workspace]
+resolver = "3"
+members = ["src-tauri", "crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+authors = ["Guilhem Fauré"]
+repository = "https://github.com/gfauredev/project"
+
+# Members opt in with `foo.workspace = true`.
+# Add the math stack with `cargo add -p engine nalgebra parry3d argmin argmin-math`,
+# then hoist entries here once more than one crate uses them.
+[workspace.dependencies]
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+tauri = "2"
+tauri-build = "2"
+wasm-bindgen = "0.2" # the flake picks a wasm-bindgen-cli matching Cargo.lock
+
+# Members opt in with `[lints] workspace = true`.
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 } # `nix flake check` denies warnings
+# Stricter, once the codebase settles:
+# pedantic = { level = "warn", priority = -1 }
+
+[profile.dev]
+opt-level = 1 # your own crates: debuggable, not glacial
+
+[profile.dev.package."*"]
+opt-level = 3 # nalgebra/parry3d/argmin are dramatically slower unoptimised
+
+[profile.release]
+opt-level = 3 # favour speed over size for numerical work
+codegen-units = 1
+lto = "fat"
+strip = true
+panic = "abort" # a panic in any rayon worker then ends the app; remove if you catch_unwind
+
+[profile.profiling] # `cargo build --profile profiling` for perf / flamegraphs
+inherits = "release"
+debug = true
+strip = false

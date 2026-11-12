@@ -1,0 +1,12 @@
+[toolchain]
+# Resolved and locked by rust-overlay via flake.lock
+channel = "stable"
+profile = "minimal"
+components = [
+  "rustfmt",
+  "clippy",
+  "rust-analyzer",
+  "rust-src",
+  "llvm-tools-preview", # needed by cargo-llvm-cov
+]
+targets = ["wasm32-unknown-unknown"]

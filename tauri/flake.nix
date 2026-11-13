@@ -1,5 +1,5 @@
 {
-  description = "Tauri React SQLite Dev";
+  description = "Tauri Bun SQLite Dev";
   nixConfig = {
     extra-substituters = [ "https://gfauredev.cachix.org" ];
     extra-trusted-public-keys = [
@@ -32,6 +32,7 @@
       ];
       withAndroidEmulator = false; # emulator + system image: several GB
       withPlaywright = false; # Nix-provided browsers for web e2e tests (Linux)
+      withDebugTools = true; # debuggers, profilers, mutation testing… in the dev shells
       minLineCoverage = 85;
       wasmCrateDir = ./crates/engine-wasm; # optional wasm-bindgen wrapper for the web build
       # Match compileSdk / the AGP default in src-tauri/gen/android
@@ -99,11 +100,15 @@
           # want bun's runtime can say so with `bun --bun <tool>`
           bun = pkgs.bun;
           nodejs = pkgs.nodejs_24;
-          # FIX nixpkgs' sqlx-cli 0.9.0 links the system SQLite but doesn't declare it,
-          # so it fails with "cannot find -lsqlite3", to drop once nixpkgs fixes it
-          sqlxCli = pkgs.sqlx-cli.overrideAttrs (old: {
-            buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.sqlite ];
-          });
+          # FIX nixpkgs' sqlx-cli 0.9.0 and samply 0.13.1 link the system SQLite but
+          # don't declare it, so they fail with "cannot find -lsqlite3", to drop once
+          # nixpkgs fixes them
+          withSystemSqlite =
+            pkg:
+            pkg.overrideAttrs (old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.sqlite ];
+            });
+          sqlxCli = withSystemSqlite pkgs.sqlx-cli;
           commonLibs = with pkgs; [
             openssl
             sqlite
@@ -551,6 +556,37 @@
                 '';
               }
             );
+          # Debugging, profiling and in-depth testing (dev shells only)
+          # perf/samply need `kernel.perf_event_paranoid` ≤ 1 on the host; build with
+          # `cargo build --profile profiling` to get symbols on optimised code
+          debugTools = lib.optionals withDebugTools (
+            with pkgs;
+            [
+              # Debuggers: `rust-lldb` / `rust-gdb` (from the toolchain) load Rust's
+              # pretty-printers for Vec, String, Option… on top of these
+              lldb
+              # Macro expansion (tauri::command, serde derives…), works on stable
+              cargo-expand
+              # Generated assembly of one function, to check vectorisation & inlining
+              cargo-show-asm
+              # Profiling: `cargo flamegraph`, `samply record`, `hyperfine 'cmd'`
+              cargo-flamegraph
+              (withSystemSqlite samply)
+              hyperfine
+              # Mutation testing and every feature combination of each crate
+              cargo-mutants
+              cargo-hack
+              # Wasm engine: code size breakdown & module inspection/validation
+              twiggy
+              wasm-tools
+            ]
+            ++ lib.optionals isLinux [
+              gdb
+              valgrind # memcheck, callgrind, massif/dhat (heap)
+              strace
+              perf
+            ]
+          );
           # Dev shells
           desktopShellHook = lib.optionalString isLinux ''
             export LD_LIBRARY_PATH="${lib.makeLibraryPath gpuLibs}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -589,6 +625,7 @@
                 pkgs.mold
                 pkgs.vulkan-tools
               ]
+              ++ debugTools
               ++ extraPackages;
               buildInputs = commonLibs ++ tauriLibs ++ mediaLibs;
               env = {

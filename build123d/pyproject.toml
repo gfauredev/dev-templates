@@ -1,0 +1,35 @@
+[project]
+name = "cad"
+version = "0.1.0"
+description = "Parametric CAD models with build123d"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = ["build123d>=0.13,<0.14"]
+
+[dependency-groups]
+dev = [
+  "ocp-vscode>=4.2",              # show() for the VS Code OCP CAD Viewer extension
+  "ocp-viewer>=1.2",              # standalone browser viewer (python -m ocp_viewer)
+  "cadquery-ocp-stubs>=8.0,<8.1", # type stubs for OCP → completion in the editor
+  "ipykernel",                    # "# %%" cells in VS Code / Jupyter
+  "pytest>=9",
+  "ruff",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.15"]
+build-backend = "uv_build"
+
+[tool.uv]
+# Lock only for Linux: smaller uv.lock, matches the flake's systems.
+environments = ["sys_platform == 'linux'"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["F403", "F405"]           # `from build123d import *` is the idiomatic style

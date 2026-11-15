@@ -1,7 +1,13 @@
 {
-  description = "build123d parametric CAD — reproducible dev environment (uv2nix, NixOS 26.05)";
+  description = "build123d dev";
+  nixConfig = {
+    extra-substituters = [ "https://gfauredev.cachix.org" ];
+    extra-trusted-public-keys = [
+      "gfauredev.cachix.org-1:mGOZ5I0bDVatgwLhbuTasIiWpVjgCyMFjfIZEPjmQfM="
+    ];
+  };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     pyproject-nix = {
       url = "github:pyproject-nix/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +35,6 @@
     }:
     let
       inherit (nixpkgs) lib;
-
       # cadquery-ocp(-novtk) ships manylinux_2_28 wheels for both of these.
       systems = [
         "x86_64-linux"
@@ -42,8 +47,11 @@
       name = pyproject.project.name;
       module = lib.replaceStrings [ "-" ] [ "_" ] name;
 
-      # Python matching `requires-python` (3.13 = nixpkgs 26.05 default → fully cached).
-      pythonFor = pkgs: pkgs.python313;
+      # Newest Python the CAD stack supports: OCP wheels and build123d stop at <3.15.
+      # Pinned explicitly (not `python3`) so a future nixpkgs default bump can't
+      # silently diverge from `requires-python` in pyproject.toml.
+      # 3.14 is also unstable's default python3, so it comes from the binary cache.
+      pythonFor = pkgs: pkgs.python314;
 
       workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = ./.; };
 

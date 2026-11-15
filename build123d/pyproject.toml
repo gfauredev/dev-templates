@@ -3,7 +3,7 @@ name = "cad"
 version = "0.1.0"
 description = "Parametric CAD models with build123d"
 readme = "README.md"
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.14,<3.15"
 dependencies = ["build123d>=0.13,<0.14"]
 
 [dependency-groups]
@@ -26,6 +26,8 @@ environments = ["sys_platform == 'linux'"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# lib3mf ctypes bindings: harmless until Python 3.19
+filterwarnings = ["ignore::DeprecationWarning:lib3mf.*"]
 
 [tool.ruff]
 line-length = 100

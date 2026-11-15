@@ -1,14 +1,10 @@
----
-lang: en-US
----
-
 # build123d on NixOS
 
 Reproducible [build123d](https://github.com/gumyr/build123d) environment for
-NixOS. build123d and OCP aren't in nixpkgs, so the flake uses **uv2nix**.
-`uv.lock` pins the exact PyPI wheels, and Nix builds them into a virtualenv.
-Each wheel gets its native libraries through `autoPatchelf`, so no `nix-ld`, FHS
-env, conda or OCCT compile is needed.
+NixOS (nixpkgs-unstable). build123d and OCP aren't in nixpkgs, so the flake uses
+**uv2nix**. `uv.lock` pins the exact PyPI wheels, and Nix builds them into a
+virtualenv. Each wheel gets its native libraries through `autoPatchelf`, so no
+`nix-ld`, FHS env, conda or OCCT compile is needed.
 
 ## Daily workflow
 

@@ -83,6 +83,20 @@ Once your preferred template has been initialized, you can use the provided shel
 | [Vlang]                  | [`vlang`](./vlang/)           |
 | [Zig]                    | [`zig`](./zig/)               |
 
+### My custom templates
+
+| Language/framework/tool  | Template                      |
+| :----------------------- | :---------------------------- |
+| [build123d]              | [`build123d`](./build123d/)   |
+| [OpenScad]               | [`openscad`](./openscad/)     |
+| [RIOT OS]                | [`riot-os`](./riot-os/)       |
+| [Tauri]                  | [`tauri`](./tauri/)           |
+
+[build123d]: https://build123d.readthedocs.io
+[openscad]: https://openscad.org
+[riot-os]: http://riot-os.org
+[tauri]: https://tauri.app
+
 ## Template contents
 
 The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.

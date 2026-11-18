@@ -85,16 +85,16 @@ Once your preferred template has been initialized, you can use the provided shel
 
 ### My custom templates
 
-| Language/framework/tool  | Template                      |
-| :----------------------- | :---------------------------- |
-| [build123d]              | [`build123d`](./build123d/)   |
-| [OpenScad]               | [`openscad`](./openscad/)     |
-| [RIOT OS]                | [`riot-os`](./riot-os/)       |
-| [Tauri]                  | [`tauri`](./tauri/)           |
+| Language/framework/tool | Template                    |
+| :---------------------- | :-------------------------- |
+| [build123d]             | [`build123d`](./build123d/) |
+| [OpenScad]              | [`openscad`](./openscad/)   |
+| [RIOT OS]               | [`riot-os`](./riot-os/)     |
+| [Tauri]                 | [`tauri`](./tauri/)         |
 
 [build123d]: https://build123d.readthedocs.io
 [openscad]: https://openscad.org
-[riot-os]: http://riot-os.org
+[riot os]: http://riot-os.org
 [tauri]: https://tauri.app
 
 ## Template contents
@@ -279,6 +279,7 @@ A dev template that's fully customizable.
 - [Mermaid-cli]
 - [Typst]
 - [pandoc]
+
 ### [`powershell`](./powershell/)
 
 - [Powershell]

@@ -1,0 +1,10 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "probe-rs run --chip nRF52840_xxAA"
+linker = "flip-link"
+rustflags = ["-C", "link-arg=-Tlink.x", "-C", "force-frame-pointers=yes"]
+
+[profile.release]
+debug = 2         # keep DWARF for gdb/probe-rs; doesn't grow flash
+lto = "fat"
+codegen-units = 1
+opt-level = "s"

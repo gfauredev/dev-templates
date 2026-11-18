@@ -94,7 +94,7 @@ Once your preferred template has been initialized, you can use the provided shel
 
 [build123d]: https://build123d.readthedocs.io
 [openscad]: https://openscad.org
-[riot os]: http://riot-os.org
+[riot os]: https://www.riot-os.org
 [tauri]: https://tauri.app
 
 ## Template contents

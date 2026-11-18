@@ -343,6 +343,32 @@
           # Aliases
           c = self.templates.c-cpp;
           cpp = self.templates.c-cpp;
+
+          # Custom
+          build123d = {
+            path = ./build123d;
+            description = "build123d Python CAD development environment";
+          };
+
+          openscad = {
+            path = ./openscad;
+            description = "OpenSCAD code CAD development environment";
+          };
+
+          riot-os = {
+            path = ./riot-os;
+            description = "RIOT OS embedded development environment";
+          };
+
+          tauri = {
+            path = ./tauri;
+            description = "Tauri Rust Bun development environment";
+          };
+
+          # Aliases
+          build = self.templates.build123d;
+          riot = self.templates.riot;
+          scad = self.templates.openscad;
         };
       };
 }

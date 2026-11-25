@@ -355,6 +355,11 @@
             description = "OpenSCAD code CAD development environment";
           };
 
+          python-node = {
+            path = ./python-node;
+            description = "Python and Node/Bun development environment";
+          };
+
           riot-os = {
             path = ./riot-os;
             description = "RIOT OS embedded development environment";
@@ -367,8 +372,10 @@
 
           # Aliases
           build = self.templates.build123d;
+          py = self.templates.python-node;
           riot = self.templates.riot;
           scad = self.templates.openscad;
+          typ = self.templates.typst;
         };
       };
 }
